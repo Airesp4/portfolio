@@ -1,0 +1,30 @@
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover svg {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .flex-wrap {
+    flex-direction: column;
+  }
+  
+  .flex-wrap button {
+    width: 100%;
+    justify-content: center;
+  }
+}

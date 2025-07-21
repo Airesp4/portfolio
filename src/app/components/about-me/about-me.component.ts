@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactSocialComponent } from "../contact-social/contact-social.component";
 
 @Component({
   selector: 'app-about-me',
-  imports: [],
+  imports: [ContactSocialComponent],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.css'
 })

@@ -1,0 +1,77 @@
+<div class="flex justify-center items-start min-h-[100vh] bg-gray-900 pt-10 px-4">
+  <div class="bg-gray-800 rounded-lg shadow-md border border-gray-700 max-w-lg w-full p-4">
+
+    <div class="flex items-center mb-3 px-2">
+      <div class="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></div>
+      <div class="w-2.5 h-2.5 bg-yellow-500 rounded-full mr-2"></div>
+      <div class="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></div>
+      <span class="ml-1 text-gray-400 font-mono text-[11px] truncate">Developer.java</span>
+    </div>
+
+    <div class="bg-gray-900 rounded-md p-3 font-mono text-[11px] leading-none overflow-x-auto">
+      <span class="text-purple-400">package </span><span class="text-yellow-300">com.portfolio.developer</span><span class="text-gray-300">;</span><br>
+      <span class="text-purple-400">import </span><span class="text-yellow-300">java.util.*</span><span class="text-gray-300">;</span><br><br>
+
+      <span class="text-gray-500">/**</span><br>
+      <span class="text-gray-500"> * Software Developer focused on Java</span><br>
+      <span class="text-gray-500"> * Version: 1.0 (Starting out, passionate to grow)</span><br>
+      <span class="text-gray-500"> * Last update: Always evolving</span><br>
+      <span class="text-gray-500"> */</span><br>
+
+      <span class="text-blue-400">public class </span><span class="text-green-400">Developer </span>
+      <span class="text-blue-400">extends </span><span class="text-green-400">Human </span>
+      <span class="text-blue-400">implements </span><span class="text-green-400">Passionate, Creative </span>
+      <span class="text-gray-300">&#123;</span><br><br>
+
+      <div class="ml-2">
+        <span class="text-blue-400">private </span><span class="text-green-400">String </span><span class="text-white">name </span> <span class="text-gray-300">= </span> <span class="text-orange-400">"Pedro Augusto"</span><span class="text-gray-300">;</span><br>
+        <span class="text-blue-400">private </span><span class="text-green-400">String </span><span class="text-white">careerStage </span> <span class="text-gray-300">= </span> <span class="text-orange-400">"Early career, constantly improving"</span><span class="text-gray-300">;</span><br>
+        <span class="text-blue-400">private </span><span class="text-green-400">String </span><span class="text-white">specialty </span> <span class="text-gray-300">= </span> <span class="text-orange-400">"Java Backend & Full Stack"</span><span class="text-gray-300">;</span><br>
+        <span class="text-blue-400">private </span><span class="text-green-400">boolean </span><span class="text-white">passionateCoder </span> <span class="text-gray-300">= </span> <span class="text-orange-400">true</span><span class="text-gray-300">;</span><br><br>
+
+        <span class="text-blue-400">private </span><span class="text-green-400">List&lt;String&gt;</span> <span class="text-white"> skills </span> <span class="text-gray-300">= </span> <span class="text-green-400">Arrays</span> <span class="text-white">.</span><span class="text-white">asList</span><span class="text-gray-300">(</span><br>
+        <div class="ml-4">
+          <span class="text-orange-400">"Java"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"Spring Boot"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"Angular"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"TypeScript/JavaScript"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"HTML5"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"CSS3"</span><span class="text-gray-300">,</span>
+          <span class="text-orange-400">"REST APIs"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"AWS (studying)"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"PostgreSQL"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"MongoDB"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"Docker"</span><span class="text-gray-300">, </span>
+          <span class="text-orange-400">"Git & GitHub"</span><span class="text-gray-300">, </span>
+        </div>
+        <span class="text-gray-300">);</span><br><br>
+      </div>
+
+      <div class="ml-2">
+        <span class="text-blue-400">public </span><span class="text-green-400">Developer</span><span class="text-gray-300">()</span><span class="text-gray-300">&#123;</span><br>
+        <div class="ml-2">
+          <span class="text-blue-400">super</span><span class="text-gray-300">();</span><br>
+          <span class="text-blue-400">this</span><span class="text-white">.</span><span class="text-white">initializePassion</span><span class="text-gray-300">();</span><br>
+          <span class="text-blue-400">this</span><span class="text-white">.</span><span class="text-white">setGrowthMindset</span><span class="text-gray-300">();</span>
+        </div>
+        <span class="text-gray-300">&#125;</span>
+      </div>
+      <br>
+      <div class="ml-2">
+        <span class="text-blue-400">public </span><span class="text-green-400">Application </span><span class="text-white">developSolution</span><span class="text-gray-300">(</span><span class="text-green-400">Problem </span><span class="text-white">challenge</span><span class="text-gray-300">)</span><span class="text-gray-300">&#123;</span><br>
+        <div class="ml-2">
+          <span class="text-green-400">Solution </span><span class="text-white">result </span> <span class="text-gray-300">= </span> <span class="text-blue-400">new </span><span class="text-green-400">Solution</span><span class="text-gray-300">();</span><br>
+          <span class="text-white">result</span><span class="text-white">.</span><span class="text-white">setArchitecture</span><span class="text-gray-300">(</span><span class="text-white">analyzeRequirements</span><span class="text-gray-300">(</span><span class="text-white">challenge</span><span class="text-gray-300">))</span><span class="text-gray-300">;</span><br>
+          <span class="text-white">result</span><span class="text-white">.</span><span class="text-white">implement</span><span class="text-gray-300">(</span><span class="text-white">bestPractices</span><span class="text-gray-300">);</span><br>
+          <span class="text-blue-400">return </span><span class="text-white">result</span><span class="text-gray-300">;</span>
+        </div>
+        <span class="text-gray-300">&#125;</span>
+      </div>
+
+      <span class="text-gray-300">&#125;</span><br><br>
+
+      <span class="text-gray-500">/* "Clean code always looks like it was written by someone who cares." - Robert C. Martin */</span>
+
+    </div>
+  </div>
+</div>

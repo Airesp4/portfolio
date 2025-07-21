@@ -1,0 +1,28 @@
+:host {
+  --custom-orange: #f89820;
+}
+
+:host ::ng-deep .text-custom-orange {
+  color: var(--custom-orange);
+}
+
+:host ::ng-deep .bg-custom-orange {
+  background-color: var(--custom-orange);
+}
+
+:host ::ng-deep .border-custom-orange {
+  border-color: var(--custom-orange);
+}
+
+:host ::ng-deep .hover\:text-custom-orange:hover {
+  color: var(--custom-orange);
+}
+
+:host ::ng-deep .hover\:bg-custom-orange:hover {
+  background-color: var(--custom-orange);
+}
+
+:host {
+  position: relative;
+  z-index: 50;
+}

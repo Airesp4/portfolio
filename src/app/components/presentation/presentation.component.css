@@ -1,0 +1,78 @@
+:host {
+  --custom-orange: #f89820;
+  scroll-behavior: smooth;
+}
+
+:host ::ng-deep .text-custom-orange {
+  color: var(--custom-orange);
+}
+
+:host ::ng-deep .bg-custom-orange {
+  background-color: var(--custom-orange);
+}
+
+:host ::ng-deep .border-custom-orange {
+  border-color: var(--custom-orange);
+}
+
+:host ::ng-deep .hover\:bg-custom-orange:hover {
+  background-color: var(--custom-orange);
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: var(--custom-orange);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.skill-bar {
+  animation: slideIn 0.8s ease-out forwards;
+  transform: translateX(-100%);
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.code-line {
+  transition: background-color 0.2s ease;
+}
+
+.code-line:hover {
+  background-color: rgba(75, 85, 99, 0.3);
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .font-mono {
+    font-size: 0.875rem;
+  }
+  
+  .code-content {
+    padding: 1rem;
+  }
+}
+
+.terminal-header {
+  background: linear-gradient(90deg, #374151 0%, #4B5563 100%);
+}
+
+.code-editor {
+  background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glow-orange {
+  box-shadow: 0 0 20px rgba(248, 152, 32, 0.3);
+}
+
+.glow-orange:hover {
+  box-shadow: 0 0 30px rgba(248, 152, 32, 0.5);
+}

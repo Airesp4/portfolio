@@ -1,0 +1,23 @@
+<header class="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 shadow-lg z-50">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      
+      <div class="flex items-center space-x-2">
+        <span class="text-xl font-mono text-white">Software Developer</span>
+        <span class="text-xl">☕</span>
+      </div>
+      
+      <div class="flex items-center space-x-8">
+        <a 
+          *ngFor="let item of navigationItems" 
+          [href]="item.href"
+          (click)="scrollToSection($event, item.href)"
+          class="font-mono text-gray-300 hover:text-custom-orange transition-colors duration-300 relative group"
+        >
+          {{ item.label }}
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-custom-orange transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

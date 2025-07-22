@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { PresentationComponent } from "./components/presentation/presentation.component";
 import { AboutMeComponent } from "./components/about-me/about-me.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { GithubContributionsComponent } from "./components/github-contributions/github-contributions.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PresentationComponent, AboutMeComponent, HeaderComponent],
+  imports: [RouterOutlet, PresentationComponent, AboutMeComponent, HeaderComponent, GithubContributionsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

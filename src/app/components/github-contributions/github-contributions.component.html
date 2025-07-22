@@ -1,0 +1,151 @@
+<div class="bg-slate-800 rounded-2xl p-8 my-6 border border-slate-700 shadow-xl overflow-hidden">
+  <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-700/60">
+    <div class="flex items-center text-xl font-bold text-white">
+      <svg class="w-6 h-6 mr-3 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14m7-7H5"></path>
+      </svg>
+      <span>{{ getTotalContributions() }} contribuições no último ano</span>
+    </div>
+    <span class="text-sm text-green-400 font-mono bg-slate-700/50 px-3 py-1.5 rounded-full border border-slate-600/50 cursor-pointer hover:bg-slate-700 transition-colors duration-200">{{ login }}</span>
+  </div>
+
+  <div *ngIf="weeks.length === 0" class="flex flex-col items-center justify-center py-20 text-slate-400 gap-6">
+    <div class="relative">
+      <div class="w-16 h-16 border-4 border-slate-600 border-t-green-500 rounded-full animate-spin"></div>
+      <div class="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-green-500 rounded-full animate-spin animation-delay-150"></div>
+    </div>
+    <span class="text-xl font-medium">Carregando contribuições...</span>
+  </div>
+
+  <div class="flex justify-between text-sm text-slate-400 mb-2 px-1" *ngIf="weeks.length > 0">
+    <span>Jul</span>
+    <span>Aug</span>
+    <span>Sep</span>
+    <span>Oct</span>
+    <span>Nov</span>
+    <span>Dec</span>
+    <span>Jan</span>
+    <span>Feb</span>
+    <span>Mar</span>
+    <span>Apr</span>
+    <span>May</span>
+    <span>Jun</span>
+    <span>Jul</span>
+  </div>
+
+  <div class="flex relative" *ngIf="weeks.length > 0">
+    <div class="flex flex-col justify-around text-xs text-slate-400 mr-3 py-1" style="height: 91px;">
+      <span></span>
+      <span>Mon</span>
+      <span></span>
+      <span>Wed</span>
+      <span></span>
+      <span>Fri</span>
+      <span></span>
+    </div>
+
+    <div class="flex gap-1 overflow-x-auto pb-2 relative" style="z-index: 1;">
+      <div class="flex flex-col gap-1" *ngFor="let dayOfWeekArray of weeks; let i = index">
+        <div *ngFor="let day of dayOfWeekArray; let j = index"
+             class="w-4 h-4 rounded-sm cursor-pointer transition-all duration-200 ease-out hover:scale-110 hover:rounded-md relative group"
+             [class]="getContributionClass(day.contributionCount)"
+             [title]="day.date ? (formatDate(day.date) + ' – ' + day.contributionCount + ' contribuições') : ''">
+
+          <div *ngIf="day.date"
+               class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg shadow-xl border border-slate-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 min-w-max">
+            <div class="text-center">
+              <div class="font-medium text-slate-200">{{ formatDate(day.date) }}</div>
+              <div class="text-green-400 text-xs mt-1">
+                {{ day.contributionCount }} {{ day.contributionCount === 1 ? 'contribuição' : 'contribuições' }}
+              </div>
+            </div>
+            <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center gap-3 text-sm text-slate-400 mt-8" *ngIf="weeks.length > 0">
+    <span>Menos</span>
+    <div class="flex gap-1">
+      <div class="w-4 h-4 rounded-sm bg-slate-700 border border-slate-600"></div>
+      <div class="w-4 h-4 rounded-sm bg-green-900 border border-green-800"></div>
+      <div class="w-4 h-4 rounded-sm bg-green-700 border border-green-600"></div>
+      <div class="w-4 h-4 rounded-sm bg-green-500 border border-green-400"></div>
+      <div class="w-4 h-4 rounded-sm bg-green-400 border border-green-300"></div>
+    </div>
+    <span>Mais</span>
+  </div>
+
+  <div class="bg-gradient-to-br from-slate-700/50 to-slate-800/50 border border-slate-600 rounded-2xl p-8 mt-10 backdrop-blur-sm">
+    <div class="mb-6">
+      <div class="flex items-center gap-3 text-green-400 font-medium">
+        <div class="relative">
+          <div class="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+          <div class="absolute inset-0 w-4 h-4 bg-green-400 rounded-full animate-ping opacity-75"></div>
+        </div>
+        <span class="text-xl font-semibold">Disponível para colaboração</span>
+      </div>
+    </div>
+
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-white text-3xl font-extrabold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+          Aberto para novos projetos
+        </h3>
+        <p class="text-slate-300 leading-relaxed text-lg">
+          Desenvolvedor apaixonado por resolver problemas através da programação.
+          Sempre em busca de novos desafios e oportunidades de crescimento.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-center gap-3 text-slate-200 bg-slate-700/30 rounded-xl p-4 border border-slate-600/50 shadow-inner">
+          <div class="w-12 h-12 bg-green-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div>
+            <div class="font-medium text-lg text-slate-100">Disponibilidade</div>
+            <div class="text-green-400 text-base">Imediata</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-200 bg-slate-700/30 rounded-xl p-4 border border-slate-600/50 shadow-inner">
+          <div class="w-12 h-12 bg-blue-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">💼</span>
+          </div>
+          <div>
+            <div class="font-medium text-lg text-slate-100">Tipo</div>
+            <div class="text-blue-400 text-base">Freelance & Full-time</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-200 bg-slate-700/30 rounded-xl p-4 border border-slate-600/50 shadow-inner">
+          <div class="w-12 h-12 bg-purple-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">🎯</span>
+          </div>
+          <div>
+            <div class="font-medium text-lg text-slate-100">Foco</div>
+            <div class="text-purple-400 text-base">Java, Spring Boot, Angular</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 text-slate-200 bg-slate-700/30 rounded-xl p-4 border border-slate-600/50 shadow-inner">
+          <div class="w-12 h-12 bg-orange-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <span class="text-2xl">📊</span>
+          </div>
+          <div>
+            <div class="font-medium text-lg text-slate-100">Total</div>
+            <div class="text-orange-400 text-base">{{ getTotalContributions() }} contribuições</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

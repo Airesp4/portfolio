@@ -1,60 +1,111 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GithubService } from '../../services/github.service';
-import { CommonModule } from '@angular/common';
+import { Component, Input, type OnInit, type OnDestroy } from "@angular/core"
+import { CommonModule } from "@angular/common"
+import { Subject, takeUntil } from "rxjs"
+import { ContributionData, ContributionDay, MonthLabel } from "../../interfaces/github.interface"
+import { GithubService } from "../../services/github.service"
+import { ContributionsUtil } from "../../utils/contributions.util"
+
 
 @Component({
-  selector: 'app-github-contributions',
+  selector: "app-github-contributions",
+  standalone: true,
   imports: [CommonModule],
-  templateUrl: './github-contributions.component.html',
-  styleUrl: './github-contributions.component.css'
+  templateUrl: "./github-contributions.component.html",
 })
-export class GithubContributionsComponent implements OnInit {
-  @Input() login!: string
-  weeks: any[][] = []
+export class GithubContributionsComponent implements OnInit, OnDestroy {
+  @Input() username!: string
 
-  constructor(private github: GithubService) {}
+  data: ContributionData | null = null
+  loading = true
+  error: string | null = null
+  monthLabels: MonthLabel[] = []
+
+  // Tooltip properties
+  tooltipVisible = false
+  tooltipX = 0
+  tooltipY = 0
+  tooltipDay: ContributionDay | null = null
+
+  readonly weekdays = ["", "Mon", "", "Wed", "", "Fri", ""]
+  readonly contributionLevels = [0, 1, 2, 3, 4] as const
+
+  private destroy$ = new Subject<void>()
+
+  constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
-    this.github.getContributions(this.login).subscribe((days) => {
-      const weeks: any[][] = []
-      let week: any[] = []
+    if (this.username) {
+      this.loadContributions()
+    }
+  }
 
-      days.forEach((day, index) => {
-        week.push(day)
-        if (week.length === 7) {
-          weeks.push(week)
-          week = []
-        }
+  ngOnDestroy(): void {
+    this.destroy$.next()
+    this.destroy$.complete()
+  }
+
+  private loadContributions(): void {
+    this.loading = true
+    this.error = null
+
+    this.githubService
+      .getContributions(this.username)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          this.data = data
+          this.monthLabels = ContributionsUtil.getMonthLabels(data.weeks)
+          this.loading = false
+        },
+        error: (error) => {
+          this.error = error.message || "Failed to load contributions"
+          this.loading = false
+        },
       })
+  }
 
-      if (week.length > 0) {
-        weeks.push(week)
-      }
+  getContributionColor(level: 0 | 1 | 2 | 3 | 4): string {
+    return ContributionsUtil.getContributionColor(level)
+  }
 
-      this.weeks = weeks
-    })
+  getMonthPosition(weekIndex: number): string {
+    if (!this.data) return "0%"
+    const totalWeeks = this.data.weeks.length
+    const leftPercentage = (weekIndex / (totalWeeks - 1)) * 100
+    return `${leftPercentage}%`
+  }
+
+  showTooltip(day: ContributionDay, event: MouseEvent): void {
+    if (!day.date) {
+      this.hideTooltip()
+      return
+    }
+
+    this.tooltipDay = day
+    this.tooltipVisible = true
+
+    const targetRect = (event.target as HTMLElement).getBoundingClientRect()
+    const scrollX = window.scrollX || document.documentElement.scrollLeft
+    const scrollY = window.scrollY || document.documentElement.scrollTop
+
+    this.tooltipX = targetRect.left + scrollX + targetRect.width / 2
+    this.tooltipY = targetRect.top + scrollY - 50
+  }
+
+  hideTooltip(): void {
+    this.tooltipVisible = false
+    this.tooltipDay = null
   }
 
   formatDate(dateStr: string): string {
-    if (!dateStr) return ""
-    const date = new Date(dateStr)
-    return date.toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    })
+    return ContributionsUtil.formatDate(dateStr)
   }
 
-  getTotalContributions(): number {
-    return this.weeks.flat().reduce((total, day) => total + (day.contributionCount || 0), 0)
+  getActiveWeeks(): number {
+    return this.data ? ContributionsUtil.calculateActiveWeeks(this.data.weeks) : 0
   }
 
-  getContributionClass(count: number): string {
-    if (count === 0) return "bg-slate-700 border border-slate-600"
-    if (count >= 10) return "bg-green-400 border border-green-300 shadow-green-400/50"
-    if (count >= 7) return "bg-green-500 border border-green-400 shadow-green-500/50"
-    if (count >= 4) return "bg-green-600 border border-green-500 shadow-green-600/50"
-    if (count >= 2) return "bg-green-700 border border-green-600 shadow-green-700/50"
-    return "bg-green-900 border border-green-800 shadow-green-900/50"
+  getLongestStreak(): number {
+    return this.data ? ContributionsUtil.calculateLongestStreak(this.data.weeks) : 0
   }
 }

@@ -20,7 +20,6 @@ export class GithubContributionsComponent implements OnInit, OnDestroy {
   error: string | null = null
   monthLabels: MonthLabel[] = []
 
-  // Tooltip properties
   tooltipVisible = false
   tooltipX = 0
   tooltipY = 0
@@ -84,12 +83,8 @@ export class GithubContributionsComponent implements OnInit, OnDestroy {
     this.tooltipDay = day
     this.tooltipVisible = true
 
-    const targetRect = (event.target as HTMLElement).getBoundingClientRect()
-    const scrollX = window.scrollX || document.documentElement.scrollLeft
-    const scrollY = window.scrollY || document.documentElement.scrollTop
-
-    this.tooltipX = targetRect.left + scrollX + targetRect.width / 2
-    this.tooltipY = targetRect.top + scrollY - 50
+    this.tooltipX = event.clientX + 10;
+    this.tooltipY = event.clientY + 10;
   }
 
   hideTooltip(): void {
@@ -99,6 +94,13 @@ export class GithubContributionsComponent implements OnInit, OnDestroy {
 
   formatDate(dateStr: string): string {
     return ContributionsUtil.formatDate(dateStr)
+  }
+
+  formatCount(count: number): string {
+    if (count === 0) {
+      return '0';
+    }
+    return count < 10 ? '0' + count : count.toString();
   }
 
   getActiveWeeks(): number {

@@ -59,7 +59,6 @@ export class GithubService {
         const user = response.data.user
         const calendar = user.contributionsCollection.contributionCalendar
 
-        // Transform GitHub data to our format
         return {
           weeks: calendar.weeks.map((week: any) => ({
             days: week.contributionDays.map((day: any) => ({

@@ -1,6 +1,5 @@
 <div class="bg-slate-800 rounded-2xl p-8 my-6 border border-slate-700 shadow-xl overflow-hidden max-w-5xl mx-auto">
   
-  <!-- Loading State -->
   <div *ngIf="loading" class="flex flex-col items-center justify-center py-20 text-slate-400 gap-6">
     <div class="relative">
       <div class="w-16 h-16 border-4 border-slate-600 border-t-green-500 rounded-full animate-spin"></div>
@@ -10,7 +9,6 @@
     <span class="text-xl font-medium">Loading contributions...</span>
   </div>
 
-  <!-- Error State -->
   <div *ngIf="error && !loading" class="flex items-center justify-center py-12">
     <div class="text-center">
       <div class="text-red-400 font-medium mb-2">Error loading contributions</div>
@@ -18,9 +16,8 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <div *ngIf="data && !loading && !error">
-    <!-- Header -->
+
     <div class="flex justify-between items-center mb-6">
       <h2 class="text-lg font-medium text-white">
         {{ data.totalContributions }} contributions in the last year
@@ -35,11 +32,9 @@
       </button>
     </div>
 
-    <!-- Contribution Grid -->
     <div class="bg-slate-900/50 rounded-lg p-6 border border-slate-700/50">
       <div class="space-y-6 w-full">
         
-        <!-- Month Labels -->
         <div class="flex w-full">
           <div class="w-10 flex-shrink-0"></div>
           <div class="flex-1 relative h-6">
@@ -51,16 +46,14 @@
           </div>
         </div>
 
-        <!-- Grid Container -->
         <div class="flex w-full">
-          <!-- Weekday Labels -->
+
           <div class="flex flex-col gap-0.5 text-xs text-gray-400 pr-2 w-10 flex-shrink-0">
             <div *ngFor="let day of weekdays" class="h-2.5 flex items-center">
               {{ day }}
             </div>
           </div>
 
-          <!-- Contribution Squares -->
           <div class="flex-1 flex justify-between">
             <div *ngFor="let week of data.weeks; let weekIndex = index" class="flex flex-col gap-0.5">
               <div *ngFor="let day of week.days; let dayIndex = index"
@@ -73,7 +66,6 @@
           </div>
         </div>
 
-        <!-- Footer -->
         <div class="flex justify-end items-center text-sm text-gray-400 pt-2">
           <div class="flex items-center gap-2">
             <span>Less</span>
@@ -89,7 +81,6 @@
       </div>
     </div>
 
-    <!-- Stats Cards -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
       <div class="bg-slate-700/30 rounded-lg p-4 border border-slate-600/50 hover:bg-slate-700/50 transition-colors">
         <div class="flex items-center gap-2 mb-2">
@@ -139,7 +130,6 @@
       </div>
     </div>
 
-    <!-- Collaboration Card -->
     <div class="bg-gradient-to-br from-slate-700/50 to-slate-800/50 border border-slate-600 rounded-2xl p-8 mt-10 backdrop-blur-sm">
       <div class="mb-6">
         <div class="flex items-center gap-3 text-green-400 font-medium">
@@ -218,12 +208,12 @@
 
   <!-- Tooltip -->
   <div *ngIf="tooltipVisible && tooltipDay"
-       class="fixed z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg pointer-events-none transform -translate-x-1/2 -translate-y-full"
-       [style.left.px]="tooltipX"
-       [style.top.px]="tooltipY">
+      class="fixed z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg pointer-events-none"
+      [style.left.px]="tooltipX"
+      [style.top.px]="tooltipY">
     <div class="font-medium">{{ formatDate(tooltipDay.date) }}</div>
     <div class="text-gray-300">
-      {{ tooltipDay.count }} {{ tooltipDay.count === 1 ? 'contribution' : 'contributions' }}
+      {{ formatCount(tooltipDay.count) }} {{ tooltipDay.count === 1 ? 'contribution' : 'contributions' }}
     </div>
     <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
   </div>

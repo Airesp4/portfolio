@@ -13,13 +13,14 @@ export class ContributionsUtil {
   }
 
   static formatDate(dateString: string): string {
-    const date = new Date(dateString)
-    return date.toLocaleDateString("en-US", {
-      weekday: "short",
+    const date = new Date(dateString);
+    return date.toLocaleDateString("pt-BR", {
+      weekday: "long",
       month: "short",
       day: "numeric",
       year: "numeric",
-    })
+      timeZone: "America/Sao_Paulo"
+    });
   }
 
   static getMonthLabels(weeks: ContributionWeek[]): MonthLabel[] {
@@ -29,7 +30,6 @@ export class ContributionsUtil {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
     weeks.forEach((week, weekIndex) => {
-      // Procura o primeiro dia válido da semana
       const firstValidDay = week.days.find((day) => day.date)
       if (!firstValidDay?.date) return
 
@@ -39,10 +39,8 @@ export class ContributionsUtil {
       if (!seenMonths.has(monthKey)) {
         seenMonths.add(monthKey)
 
-        // Verifica se é realmente o início do mês nesta semana
         const dayOfMonth = date.getDate()
 
-        // Se é uma das primeiras semanas do mês (dia <= 7) ou se é a primeira ocorrência
         if (dayOfMonth <= 7 || !seenMonths.has(monthKey)) {
           labels.push({
             name: monthNames[date.getMonth()],

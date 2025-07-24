@@ -4,10 +4,11 @@ import { PresentationComponent } from "./components/presentation/presentation.co
 import { AboutMeComponent } from "./components/about-me/about-me.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { GithubContributionsComponent } from "./components/github-contributions/github-contributions.component";
+import { ProjectsOverviewComponent } from "./components/projects-overview/projects-overview.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PresentationComponent, AboutMeComponent, HeaderComponent, GithubContributionsComponent],
+  imports: [RouterOutlet, PresentationComponent, AboutMeComponent, HeaderComponent, GithubContributionsComponent, ProjectsOverviewComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

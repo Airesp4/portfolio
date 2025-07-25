@@ -19,7 +19,7 @@ export class ContributionsUtil {
       month: "short",
       day: "numeric",
       year: "numeric",
-      timeZone: "America/Sao_Paulo"
+      timeZone: "UTC"
     });
   }
 

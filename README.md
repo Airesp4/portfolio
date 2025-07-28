@@ -1,59 +1,54 @@
-# AiresdevPortfolio
+# 🚀 Portfólio de Desenvolvedor - Pedro Augusto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Este repositório contém o código-fonte do meu portfólio pessoal desenvolvido em Angular. A aplicação tem como objetivo apresentar meus projetos, habilidades, experiências e formas de contato, servindo como uma vitrine profissional.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📌 Sobre o Projeto
 
-```bash
-ng serve
-```
+O portfólio é uma Single Page Application (SPA) moderna e responsiva, com seções organizadas para proporcionar uma navegação fluida e intuitiva. Todo o conteúdo é modularizado em componentes reutilizáveis, seguindo boas práticas de desenvolvimento frontend.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🧩 Funcionalidades
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Exibição de projetos realizados, com destaque para tecnologias utilizadas.
+- Integração com a API do GitHub para exibir contribuições.
+- Seção de contatos com links diretos para redes profissionais.
+- Estilização responsiva com suporte a diferentes tamanhos de tela.
+- Componente dedicado ao rodapé com informações adicionais.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠️ Tecnologias Utilizadas
 
-```bash
-ng generate --help
-```
+- **Angular** – Framework para construção da interface.
+- **TypeScript** – Linguagem principal da aplicação.
+- **HTML5 e CSS3** – Marcação e estilos personalizados.
+- **Vercel** – Plataforma de hospedagem para o deploy da aplicação.
 
-## Building
+---
 
-To build the project run:
+## 🔐 Segurança
 
-```bash
-ng build
-```
+O projeto faz uso de variáveis de ambiente para manter dados sensíveis como o token da API do GitHub protegidos durante o processo de build e deploy. Nenhuma credencial é exposta no código-fonte.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🌐 Deploy
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+A aplicação está publicada na plataforma Vercel, permitindo atualizações contínuas a partir de cada push na branch principal do repositório.
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## 👨‍💻 Autor
 
-For end-to-end (e2e) testing, run:
+**Pedro Augusto**  
+Desenvolvedor de software focado em soluções modernas para web.  
+Atualmente cursando Ciência da Computação e atuando com tecnologias como Java, Angular e Node.js.
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 📄 Licença
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto está licenciado sob os termos da licença MIT.

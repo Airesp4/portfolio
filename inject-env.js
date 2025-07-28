@@ -12,5 +12,5 @@ export const environment = {
 };
 `;
 
-fs.writeFileSync('./src/environments/environment.ts', content);
+fs.writeFileSync('./src/app/environments/environment.ts', content);
 console.log('✅ Token injetado com sucesso!');

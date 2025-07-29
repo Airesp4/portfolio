@@ -29,7 +29,7 @@ export class ProjectsOverviewComponent {
       title: "desafio-itau-junior",
       description:
         "Este repositório contém a solução para o desafio de programação proposto pelo Itaú Unibanco, onde foi desenvolvido uma API REST para o gerenciamento de transações financeiras e cálculo de estatísticas. A API foi construída utilizando Java e Spring Boot.",
-      image: "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+      image: "itau-unibanco.jpg",
       technologies: ["Java", "Spring Boot", "JUnit"],
       demoUrl: "",
       githubUrl: "https://github.com/Airesp4/desafio-itau-junior",

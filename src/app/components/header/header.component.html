@@ -1,23 +1,51 @@
 <header class="fixed top-0 left-0 right-0 bg-black border-b border-gray-800 shadow-lg z-50">
   <nav class="container mx-auto px-6 py-4">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between w-full max-w-full overflow-hidden"> 
       
-      <div class="flex items-center space-x-2">
-        <span class="text-xl font-mono text-white">Software Developer</span>
-        <span class="text-xl">☕</span>
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <span class="text-xl font-mono text-white whitespace-nowrap overflow-hidden text-ellipsis">Software Developer</span> 
+        <span class="text-xl flex-shrink-0">☕</span>
       </div>
       
-      <div class="flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-8 flex-shrink-0">
         <a 
           *ngFor="let item of navigationItems" 
           [href]="item.href"
           (click)="scrollToSection($event, item.href)"
-          class="font-mono text-gray-300 hover:text-custom-orange transition-colors duration-300 relative group"
+          class="font-mono text-gray-300 hover:text-custom-orange transition-colors duration-300 relative group whitespace-nowrap"
         >
           {{ item.label }}
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-custom-orange transition-all duration-300 group-hover:w-full"></span>
         </a>
       </div>
+      
+      <div class="md:hidden flex-shrink-0">
+        <button (click)="toggleMobileMenu()" class="text-gray-300 hover:text-custom-orange focus:outline-none focus:text-custom-orange">
+          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path *ngIf="!isMobileMenuOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z" clip-rule="evenodd"></path>
+            <path *ngIf="isMobileMenuOpen" fill-rule="evenodd" d="M18.278 16.828a1 1 0 001.414-1.414L13.414 12l6.278-6.278a1 1 0 10-1.414-1.414L12 10.586 5.722 4.308a1 1 0 00-1.414 1.414L10.586 12l-6.278 6.278a1 1 0 101.414 1.414L12 13.414l6.278 6.278z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+
     </div>
+
+    <div
+      [ngClass]="{'block': isMobileMenuOpen, 'hidden': !isMobileMenuOpen}"
+      class="md:hidden mt-4 py-2 space-y-2 transition-all duration-300 ease-in-out origin-top"
+      [style.maxHeight]="isMobileMenuOpen ? '500px' : '0'"
+      [style.opacity]="isMobileMenuOpen ? '1' : '0'"
+      [style.overflow]="isMobileMenuOpen ? 'visible' : 'hidden'"
+    >
+      <a
+        *ngFor="let item of navigationItems"
+        [href]="item.href"
+        (click)="scrollToSectionAndCloseMenu($event, item.href)"
+        class="block px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-custom-orange rounded-md text-base font-medium"
+      >
+        {{ item.label }}
+      </a>
+    </div>
+
   </nav>
 </header>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,27 +7,43 @@ import { Component } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   navigationItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Projects', href: '#projects' },
     { label: 'About', href: '#about' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Contact', href: '#contact' }
   ];
+
+  isMobileMenuOpen: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  scrollToSection(event: Event, targetId: string): void {
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  scrollToSectionAndCloseMenu(event: Event, fragment: string): void {
     event.preventDefault();
-    const element = document.querySelector(targetId);
+    this.isMobileMenuOpen = false;
+    this.scrollToSection(event, fragment);
+  }
+
+  scrollToSection(event: Event, fragment: string): void {
+    event.preventDefault();
+    const element = document.querySelector(fragment);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    if (window.innerWidth >= 768) {
+      this.isMobileMenuOpen = false;
     }
   }
 }

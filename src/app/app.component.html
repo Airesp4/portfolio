@@ -2,18 +2,20 @@
 
 <app-header></app-header>
 
-<section id="home" class="mt-10 flex flex-col gap-8 bg-gray-900 md:flex-row">
-  <app-about-me class="w-full md:w-1/2"></app-about-me>
-  <app-presentation class="w-full md:w-1/2"></app-presentation>
-</section>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="home" class="mt-10 flex flex-col gap-8 bg-gray-900 md:flex-row">
+    <app-about-me class="w-full md:w-1/2"></app-about-me>
+    <app-presentation class="w-full md:w-1/2"></app-presentation>
+  </section>
 
-<section id="about">
-  <app-github-contributions username="Airesp4"></app-github-contributions>
-</section>
+  <section id="about">
+    <app-github-contributions username="Airesp4"></app-github-contributions>
+  </section>
 
-<section id="projects">
-  <app-projects-overview></app-projects-overview>
-</section>
+  <section id="projects">
+    <app-projects-overview></app-projects-overview>
+  </section>
+</div>
 
 <section id="contact">
   <app-footer></app-footer>

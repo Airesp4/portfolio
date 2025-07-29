@@ -23,7 +23,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div 
         *ngFor="let project of filteredProjects" 
-        class="group bg-[#1A1A2E] border border-[#2E2E4A] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-[#64B5F6]">
+        class="group bg-[#1A1A2E] border border-[#2E2E4A] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-[#64B5F6] flex flex-col">
         
         <div class="relative overflow-hidden h-48">
           <img 
@@ -64,8 +64,7 @@
           <p class="text-sm text-[#B0B0C0] leading-relaxed">{{ project.description }}</p>
         </div>
 
-        <div class="p-6">
-          <div class="flex flex-wrap gap-2 mb-4">
+        <div class="p-6 mt-auto"> <div class="flex flex-wrap gap-2 mb-4">
             <span 
               *ngFor="let tech of project.technologies" 
               class="px-2 py-1 text-xs border border-[#64B5F6]/30 text-[#64B5F6] bg-[#64B5F6]/5 rounded hover:bg-[#64B5F6] hover:text-[#1A1A2E] transition-colors duration-300">

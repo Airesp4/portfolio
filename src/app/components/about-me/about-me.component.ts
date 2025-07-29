@@ -9,7 +9,7 @@ import { ContactSocialComponent } from "../contact-social/contact-social.compone
 })
 export class AboutMeComponent implements OnInit {
 
-  fullText: string = 'I’m an early‑career software developer passionate about solving problems through computing and programming. I love creating solutions, learning new technologies, and growing my skills while contributing to impactful projects.';
+  fullText: string = 'I’m a driven early-career software developer, focused on constantly improving both technically and personally. I care deeply about delivering real value and making a positive impact on every project I’m part of.';
   displayText: string = '';
   currentIndex: number = 0;
   typingSpeed: number = 50;

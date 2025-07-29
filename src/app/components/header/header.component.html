@@ -2,9 +2,15 @@
   <nav class="container mx-auto px-6 py-4">
     <div class="flex items-center justify-between w-full max-w-full overflow-hidden"> 
       
-      <div class="flex items-center space-x-2 flex-shrink-0">
-        <span class="text-xl font-mono text-white whitespace-nowrap overflow-hidden text-ellipsis">Software Developer</span> 
-        <span class="text-xl flex-shrink-0">☕</span>
+      <div 
+        id="home-link" 
+        class="flex items-center flex-shrink-0 min-w-0 cursor-pointer" 
+        (click)="scrollToSection($event, '#home')"
+      >
+        <span class="text-xs sm:text-sm md:text-base lg:text-xl font-mono text-blue-300 whitespace-nowrap overflow-hidden text-ellipsis">
+          <span>Pedro Augusto</span> - Software Developer
+        </span>
+        <span class="text-xl ml-2 flex-shrink-0">☕</span>
       </div>
       
       <div class="hidden md:flex items-center space-x-8 flex-shrink-0">
@@ -12,7 +18,7 @@
           *ngFor="let item of navigationItems" 
           [href]="item.href"
           (click)="scrollToSection($event, item.href)"
-          class="font-mono text-gray-300 hover:text-custom-orange transition-colors duration-300 relative group whitespace-nowrap"
+          class="font-mono text-blue-300 hover:text-custom-orange transition-colors duration-300 relative group whitespace-nowrap"
         >
           {{ item.label }}
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-custom-orange transition-all duration-300 group-hover:w-full"></span>
@@ -22,7 +28,7 @@
       <div class="md:hidden flex-shrink-0">
         <button (click)="toggleMobileMenu()" class="text-gray-300 hover:text-custom-orange focus:outline-none focus:text-custom-orange">
           <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-            <path *ngIf="!isMobileMenuOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z" clip-rule="evenodd"></path>
+            <path *ngIf="!isMobileMenuOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z" clip-rule="evenodd"></path>
             <path *ngIf="isMobileMenuOpen" fill-rule="evenodd" d="M18.278 16.828a1 1 0 001.414-1.414L13.414 12l6.278-6.278a1 1 0 10-1.414-1.414L12 10.586 5.722 4.308a1 1 0 00-1.414 1.414L10.586 12l-6.278 6.278a1 1 0 101.414 1.414L12 13.414l6.278 6.278z" clip-rule="evenodd"></path>
           </svg>
         </button>
